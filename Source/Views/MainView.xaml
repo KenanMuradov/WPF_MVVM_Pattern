@@ -6,8 +6,22 @@
         xmlns:local="clr-namespace:Source.Views"
         mc:Ignorable="d"
         Title="MainView" Height="450" Width="800">
-    <StackPanel>
-        <TextBox Name="txt" FontSize="42" Margin="5"></TextBox>
-        <Button Command="{Binding ShowCommand}" FontSize="42" Margin="5">Show</Button>
+    <StackPanel HorizontalAlignment="Center">
+
+        <TextBlock Text="Make"/>
+        <TextBlock Text="{Binding Car.Make}"/>
+        <TextBlock Text="Model"/>
+        <TextBlock Text="{Binding Car.Model}"/>
+        <TextBlock Text="Year"/>
+        <TextBlock Text="{Binding Car.Year}"/>
+
+
+        <StackPanel Orientation="Horizontal">
+            <Button>Show</Button>
+            <Button>Add</Button>
+            <Button>Edit</Button>
+            <Button>Delete</Button>
+        </StackPanel>
+        
     </StackPanel>
 </Window>

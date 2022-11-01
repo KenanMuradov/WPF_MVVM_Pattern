@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:Source"
              StartupUri="Views/MainView.xaml">
     <Application.Resources>
-         
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="ResourceDictionaries/CustomStyleResDict.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>
