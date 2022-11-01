@@ -12,12 +12,12 @@
         <TextBlock Text="Model"/>
         <TextBox Text="{Binding SelectedCar.Model,UpdateSourceTrigger=Explicit}"/>
         <TextBlock Text="Year"/>
-        <TextBox Text="{Binding SelectedCar.Year,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding SelectedCar.Year,UpdateSourceTrigger=Explicit}"/>
 
 
         <StackPanel Orientation="Horizontal">
-            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path = DialogResult}" Command = "{Binding AcceptCommand}">Accept</Button>
-            <Button Command = "{Binding CancelCommand}">Cancel</Button>
+            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Command = "{Binding AcceptCommand}">Accept</Button>
+            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Command = "{Binding CancelCommand}">Cancel</Button>
         </StackPanel>
 
     </StackPanel>

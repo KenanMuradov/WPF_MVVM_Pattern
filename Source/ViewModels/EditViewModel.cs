@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Source.ViewModels;
@@ -21,15 +24,43 @@ public class EditViewModel
     {
         SelectedCar = selectedCar;
 
-        AcceptCommand = new RelayCommand(ExecuteAcceptCommand);
+        AcceptCommand = new RelayCommand(ExecuteAcceptCommand, CanExecuteAcceptCommand);
+        CancelCommand = new RelayCommand(ExecuteAcceptCommand);
     }
 
     void ExecuteAcceptCommand(object? parametr)
     {
-        if(parametr is bool?)
+        if(parametr is Window window && window.Content is StackPanel stackPanel)
         {
-            parametr = (bool?)true;
+            foreach (var txt in stackPanel.Children.OfType<TextBox>())
+            {
+                BindingExpression be = txt.GetBindingExpression(TextBox.TextProperty);
+                be.UpdateSource();
+            }
+
+            window.DialogResult = true;
         }
+    }
+
+    bool CanExecuteAcceptCommand(object? parametr)
+    {
+
+        if (parametr is Window window && window.Content is StackPanel stackPanel)
+        {
+            foreach (var txt in stackPanel.Children.OfType<TextBox>())
+                if (txt.Text.Length < 2)
+                    return false;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    void ExecuteCancelCommand(object? parametr)
+    {
+        if (parametr is Window window)
+            window.DialogResult = false;
     }
 
 }

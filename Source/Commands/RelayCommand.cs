@@ -23,6 +23,5 @@ public class RelayCommand : ICommand
     }
 
     public bool CanExecute(object? parameter) => _canExecute is null || _canExecute.Invoke(parameter);
-
     public void Execute(object? parameter) => _execute.Invoke(parameter);
 }
