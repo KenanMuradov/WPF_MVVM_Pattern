@@ -23,6 +23,7 @@ public class MainViewModel
     public ICommand ShowCommand { get; set; }
     public ICommand EditCommand { get; set; }
     public ICommand AddCommand { get; set; }
+    public ICommand DeleteCommand { get; set; }
 
     public MainViewModel(ICarRepository carRepository)
     {
@@ -31,12 +32,14 @@ public class MainViewModel
 
         ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteCommand);
         AddCommand = new RelayCommand(ExecuteAddCommand);
-        EditCommand = new RelayCommand(ExecuteEditCommand);
+        EditCommand = new RelayCommand(ExecuteEditCommand, CanExecuteCommand);
+        DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteCommand);
 
     }
 
 
     bool CanExecuteCommand(object? parametr) => SelectedCar is not null;
+
     void ExecuteShowCommand(object? parametr) => MessageBox.Show(SelectedCar?.Make);
 
     void ExecuteEditCommand(object? parametr)
@@ -48,7 +51,6 @@ public class MainViewModel
 
         editView.ShowDialog();
     }
-
 
     void ExecuteAddCommand(object? parametr)
     {
@@ -65,5 +67,8 @@ public class MainViewModel
 
     }
 
-
+    void ExecuteDeleteCommand(object? parametr)
+    {
+        Cars.Remove(SelectedCar);
+    }
 }
