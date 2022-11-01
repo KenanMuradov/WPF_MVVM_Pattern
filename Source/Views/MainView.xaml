@@ -8,6 +8,8 @@
         Title="MainView" Height="450" Width="800">
     <StackPanel HorizontalAlignment="Center">
 
+        <ComboBox Margin="5"></ComboBox>
+        
         <TextBlock Text="Make"/>
         <TextBlock Text="{Binding Car.Make}"/>
         <TextBlock Text="Model"/>
@@ -17,10 +19,10 @@
 
 
         <StackPanel Orientation="Horizontal">
-            <Button>Show</Button>
-            <Button>Add</Button>
-            <Button>Edit</Button>
-            <Button>Delete</Button>
+            <Button Command = "{Binding ShowCommand}">Show</Button>
+            <Button Command = "{Binding AddCommand}">Add</Button>
+            <Button Command = "{Binding EditCommand}">Edit</Button>
+            <Button Command = "{Binding DeleteCommand}">Delete</Button>
         </StackPanel>
         
     </StackPanel>
