@@ -44,7 +44,7 @@ public class MainViewModel
 
     void ExecuteEditCommand(object? parametr)
     {
-        EditViewModel editViewModel = new(SelectedCar);
+        EditViewModel editViewModel = new(SelectedCar!);
 
         EditView editView = new();
         editView.DataContext = editViewModel;
@@ -67,8 +67,5 @@ public class MainViewModel
 
     }
 
-    void ExecuteDeleteCommand(object? parametr)
-    {
-        Cars.Remove(SelectedCar);
-    }
+    void ExecuteDeleteCommand(object? parametr) => Cars.Remove(SelectedCar!);
 }
