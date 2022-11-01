@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Source.Repositories.Abstract;
+namespace Source.Repositories.Abstracts;
 
 public interface IRepository<T>
 {
@@ -13,5 +13,5 @@ public interface IRepository<T>
     void Add(T entity);
     void Update(T entity);
     void Remove(T entity);
-    
+
 }
