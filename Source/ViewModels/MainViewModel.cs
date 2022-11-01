@@ -2,6 +2,7 @@
 using Source.Models;
 using Source.Repositories.Abstracts;
 using Source.Repositories.Concretes;
+using Source.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,7 @@ public class MainViewModel
     public Car? SelectedCar { get; set; }
 
     public ICommand ShowCommand { get; set; }
+    public ICommand EditCommand { get; set; }
 
     public MainViewModel(ICarRepository carRepository)
     {
@@ -27,10 +29,23 @@ public class MainViewModel
         Cars = new(_carRepository.GetList() ?? new());
 
         ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteShowCommand);
+        EditCommand = new RelayCommand(ExecuteEditCommand);
+
     }
 
 
     void ExecuteShowCommand(object? parametr) => MessageBox.Show(SelectedCar?.Make);
     bool CanExecuteShowCommand(object? parametr) => SelectedCar is not null;
+
+    void ExecuteEditCommand(object? parametr)
+    {
+        EditViewModel editViewModel = new(SelectedCar);
+
+        EditView editView = new();
+        editView.DataContext = editViewModel;
+
+        editView.ShowDialog();
+    }
+
 
 }

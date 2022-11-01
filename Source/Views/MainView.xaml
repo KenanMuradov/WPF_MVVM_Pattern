@@ -13,7 +13,7 @@
     
     <StackPanel HorizontalAlignment="Center">
 
-        <ComboBox SelectedItem="{Binding SelectedCar}" DisplayMemberPath="Make" ItemsSource="{Binding Cars}" Margin="5"></ComboBox>
+        <ComboBox SelectedIndex="0" SelectedItem="{Binding SelectedCar}" DisplayMemberPath="Make" ItemsSource="{Binding Cars}" Margin="5"></ComboBox>
         
         <TextBlock Text="Make"/>
         <TextBlock Text="{Binding SelectedCar.Make}"/>

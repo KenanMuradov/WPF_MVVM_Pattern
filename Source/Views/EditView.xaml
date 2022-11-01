@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:Source.Views"
         mc:Ignorable="d"
         Title="EditView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock Text="Make"/>
+        <TextBox Text="{Binding SelectedCar.Make,UpdateSourceTrigger=Explicit}"/>
+        <TextBlock Text="Model"/>
+        <TextBox Text="{Binding SelectedCar.Model,UpdateSourceTrigger=Explicit}"/>
+        <TextBlock Text="Year"/>
+        <TextBox Text="{Binding SelectedCar.Year,UpdateSourceTrigger=PropertyChanged}"/>
+
+
+        <StackPanel Orientation="Horizontal">
+            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path = DialogResult}" Command = "{Binding AcceptCommand}">Accept</Button>
+            <Button Command = "{Binding CancelCommand}">Cancel</Button>
+        </StackPanel>
+
+    </StackPanel>
 </Window>

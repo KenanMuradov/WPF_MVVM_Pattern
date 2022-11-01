@@ -12,16 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Source.Views
+namespace Source.Views;
+
+public partial class EditView : Window
 {
-    /// <summary>
-    /// Логика взаимодействия для EditView.xaml
-    /// </summary>
-    public partial class EditView : Window
+    public EditView()
     {
-        public EditView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
