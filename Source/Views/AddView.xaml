@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:Source.Views"
         mc:Ignorable="d"
         Title="AddView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock Text="Make"/>
+        <TextBox Text="{Binding NewCar.Make,UpdateSourceTrigger=Explicit}"/>
+        <TextBlock Text="Model"/>
+        <TextBox Text="{Binding NewCar.Model,UpdateSourceTrigger=Explicit}"/>
+        <TextBlock Text="Year"/>
+        <TextBox Text="{Binding NewCar.Year,UpdateSourceTrigger=Explicit}"/>
+
+
+        <StackPanel Orientation="Horizontal">
+            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Command = "{Binding AcceptCommand}">Accept</Button>
+            <Button CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Command = "{Binding CancelCommand}">Cancel</Button>
+        </StackPanel>
+
+    </StackPanel>
 </Window>

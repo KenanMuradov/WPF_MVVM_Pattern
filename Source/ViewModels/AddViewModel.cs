@@ -12,25 +12,25 @@ using System.Windows.Input;
 
 namespace Source.ViewModels;
 
-public class EditViewModel
+public class AddViewModel
 {
-    public Car SelectedCar { get; set; }
+    public Car NewCar { get; set; } = new();
+
+    public bool MyDialogResult { get; set; }
 
     public ICommand AcceptCommand { get; set; }
     public ICommand CancelCommand { get; set; }
 
 
-    public EditViewModel(Car selectedCar)
+    public AddViewModel()
     {
-        SelectedCar = selectedCar;
-
         AcceptCommand = new RelayCommand(ExecuteAcceptCommand, CanExecuteAcceptCommand);
         CancelCommand = new RelayCommand(ExecuteCancelCommand);
     }
 
     void ExecuteAcceptCommand(object? parametr)
     {
-        if(parametr is Window window && window.Content is StackPanel stackPanel)
+        if (parametr is Window window && window.Content is StackPanel stackPanel)
         {
             foreach (var txt in stackPanel.Children.OfType<TextBox>())
             {
@@ -38,6 +38,7 @@ public class EditViewModel
                 be.UpdateSource();
             }
 
+            MyDialogResult = true;
             window.DialogResult = true;
         }
     }
