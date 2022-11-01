@@ -1,5 +1,4 @@
-﻿using Source.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Source.Views;
-
-public partial class MainView : Window
+namespace Source.Views
 {
-    public MainView()
+    /// <summary>
+    /// Логика взаимодействия для EditView.xaml
+    /// </summary>
+    public partial class EditView : Window
     {
-        InitializeComponent();
+        public EditView()
+        {
+            InitializeComponent();
+        }
     }
-
 }
