@@ -30,14 +30,8 @@ public class AddViewModel
 
     void ExecuteAcceptCommand(object? parametr)
     {
-        if (parametr is Window window && window.Content is StackPanel stackPanel)
+        if (parametr is Window window)
         {
-            foreach (var txt in stackPanel.Children.OfType<TextBox>())
-            {
-                BindingExpression be = txt.GetBindingExpression(TextBox.TextProperty);
-                be.UpdateSource();
-            }
-
             MyDialogResult = true;
             window.DialogResult = true;
         }

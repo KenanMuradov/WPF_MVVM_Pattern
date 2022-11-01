@@ -8,11 +8,11 @@
         Title="AddView" Height="450" Width="800">
     <StackPanel HorizontalAlignment="Center">
         <TextBlock Text="Make"/>
-        <TextBox Text="{Binding NewCar.Make,UpdateSourceTrigger=Explicit}"/>
+        <TextBox Text="{Binding NewCar.Make,UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Model"/>
-        <TextBox Text="{Binding NewCar.Model,UpdateSourceTrigger=Explicit}"/>
+        <TextBox Text="{Binding NewCar.Model,UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Year"/>
-        <TextBox Text="{Binding NewCar.Year,UpdateSourceTrigger=Explicit}"/>
+        <TextBox Text="{Binding NewCar.Year,UpdateSourceTrigger=PropertyChanged}"/>
 
 
         <StackPanel Orientation="Horizontal">
