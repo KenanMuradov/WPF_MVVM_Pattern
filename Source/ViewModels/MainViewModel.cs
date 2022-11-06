@@ -1,5 +1,6 @@
 ﻿using Source.Commands;
 using Source.Models;
+using Source.Navigation;
 using Source.Repositories.Abstracts;
 using Source.Repositories.Concretes;
 using Source.Views;
@@ -14,58 +15,17 @@ using System.Windows.Input;
 
 namespace Source.ViewModels;
 
-public class MainViewModel
+public class MainViewModel : BaseViewModel
 {
-    private readonly ICarRepository _carRepository;
-    public ObservableCollection<Car> Cars { get; set; }
-    public Car? SelectedCar { get; set; }
+    private readonly NavigationStore _navigationStore;
 
-    public ICommand ShowCommand { get; set; }
-    public ICommand EditCommand { get; set; }
-    public ICommand AddCommand { get; set; }
-    public ICommand DeleteCommand { get; set; }
+    public BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
 
-    public MainViewModel(ICarRepository carRepository)
+    public MainViewModel(NavigationStore navigationStore)
     {
-        _carRepository = carRepository;
-        Cars = new(_carRepository.GetList() ?? new());
-
-        ShowCommand = new RelayCommand(ExecuteShowCommand, CanExecuteCommand);
-        AddCommand = new RelayCommand(ExecuteAddCommand);
-        EditCommand = new RelayCommand(ExecuteEditCommand, CanExecuteCommand);
-        DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteCommand);
-
+        _navigationStore = navigationStore;
+        navigationStore.CurrentViewModelChanged += NavigationStore_CurrentViewModelChanged;
     }
 
-
-    bool CanExecuteCommand(object? parametr) => SelectedCar is not null;
-
-    void ExecuteShowCommand(object? parametr) => MessageBox.Show(SelectedCar?.Make);
-
-    void ExecuteEditCommand(object? parametr)
-    {
-        EditViewModel editViewModel = new(SelectedCar!);
-
-        EditView editView = new();
-        editView.DataContext = editViewModel;
-
-        editView.ShowDialog();
-    }
-
-    void ExecuteAddCommand(object? parametr)
-    {
-        AddViewModel addViewModel = new();
-
-        AddView addView = new();
-        addView.DataContext = addViewModel;
-
-        addView.ShowDialog();
-
-        if (addViewModel.MyDialogResult is true)
-            Cars.Add(addViewModel.NewCar);
-
-
-    }
-
-    void ExecuteDeleteCommand(object? parametr) => Cars.Remove(SelectedCar!);
+    private void NavigationStore_CurrentViewModelChanged() => OnPropertyChanged(nameof(CurrentViewModel));
 }

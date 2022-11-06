@@ -10,14 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Source.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AddView.xaml
+    /// Логика взаимодействия для AddViewTemp.xaml
     /// </summary>
-    public partial class AddView : Window
+    public partial class AddView : UserControl
     {
         public AddView()
         {

@@ -9,19 +9,37 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Autofac;
+using Source.Navigation;
 
 namespace Source;
 
 public partial class App : Application
 {
+    public static IContainer? Container { get; set; }
+
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-        ICarRepository carRepository = new FakeCarRepository();
-        MainViewModel mainViewModel = new(carRepository);
+
+        NavigationStore navigationStore = new();
+
+        var builder = new ContainerBuilder();
+
+        builder.RegisterInstance(navigationStore).SingleInstance();
+
+        builder.RegisterType<FakeCarRepository>().As<ICarRepository>().InstancePerLifetimeScope();
+        builder.RegisterType<MainViewModel>();
+        builder.RegisterType<HomeViewModel>();
+
+
+        Container = builder.Build();
+
+
+        navigationStore.CurrentViewModel = Container.Resolve<HomeViewModel>(); 
 
         MainView mainView = new();
-        mainView.DataContext = mainViewModel;
-
+        mainView.DataContext = Container.Resolve<MainViewModel>();
+        
         mainView.Show();
 
     }

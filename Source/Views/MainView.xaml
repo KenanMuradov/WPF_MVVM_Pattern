@@ -3,32 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Source.Views" xmlns:ViewModels="clr-namespace:Source.ViewModels"
+        xmlns:Views="clr-namespace:Source.Views" 
+        xmlns:ViewModels="clr-namespace:Source.ViewModels"
         mc:Ignorable="d"
         Title="MainView" Height="500" Width="800" WindowStartupLocation="CenterScreen">
 
     <!--<Window.DataContext>
         <ViewModels:MainViewModel></ViewModels:MainViewModel>
     </Window.DataContext>-->
+
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+                <Views:HomeView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type ViewModels:AddViewModel}">
+                <Views:AddView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModels:EditViewModel}">
+                <Views:EditView/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
     
-    <StackPanel HorizontalAlignment="Center">
-
-        <ComboBox SelectedIndex="0" SelectedItem="{Binding SelectedCar}" DisplayMemberPath="Make" ItemsSource="{Binding Cars}" Margin="5"></ComboBox>
-        
-        <TextBlock Text="Make"/>
-        <TextBlock Text="{Binding SelectedCar.Make}"/>
-        <TextBlock Text="Model"/>
-        <TextBlock Text="{Binding SelectedCar.Model}"/>
-        <TextBlock Text="Year"/>
-        <TextBlock Text="{Binding SelectedCar.Year}"/>
-
-
-        <StackPanel Orientation="Horizontal">
-            <Button Command = "{Binding ShowCommand}">Show</Button>
-            <Button Command = "{Binding AddCommand}">Add</Button>
-            <Button Command = "{Binding EditCommand}">Edit</Button>
-            <Button Command = "{Binding DeleteCommand}">Delete</Button>
-        </StackPanel>
-        
-    </StackPanel>
 </Window>

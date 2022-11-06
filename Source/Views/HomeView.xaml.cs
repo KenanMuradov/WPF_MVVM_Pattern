@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Source.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EditViewTemp.xaml
+    /// Логика взаимодействия для HomeView.xaml
     /// </summary>
-    public partial class EditView : UserControl
+    public partial class HomeView : UserControl
     {
-        public EditView()
+        public HomeView()
         {
             InitializeComponent();
         }
